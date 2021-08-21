@@ -17,9 +17,15 @@ Grid2048::Grid2048(const Grid2048& grid):
         this->_table[i] = grid._table[i];
 }
 
+Grid2048::Grid2048(Grid2048&& grid):
+    x(grid.x), y(grid.y), _table(grid._table)
+{
+    grid._table = new int[grid.x * grid.y];
+}
+
 Grid2048& Grid2048::operator=(const Grid2048& grid){
-    if( (this->x * this->y) < (grid.x * grid.y) )
-        throw std::runtime_error("assigning a grid bigger than target's size");
+    if( (this->x < grid.x) || (this->y < grid.y) )
+        throw std::runtime_error("copying a grid wider or taller than target's size");
 
     //self assigning check
     if(this == &grid)
@@ -28,6 +34,20 @@ Grid2048& Grid2048::operator=(const Grid2048& grid){
     //note: size of target wont change, a 4x4 could copy a 3x3 array and still with same size
     for(int i=0; i < (grid.x * grid.y); ++i)
         this->_table[i] = grid._table[i];
+
+    return *this;
+}
+
+Grid2048& Grid2048::operator=(Grid2048&& grid){
+    if( (this->x < grid.x) || (this->y < grid.y) )
+        throw std::runtime_error("moving a grid wider or taller than target's size");
+
+    //self assigning check
+    if(this == &grid)
+        return *this;
+
+    this->_table = grid._table;
+    grid._table = new int[grid.x * grid.y];
 
     return *this;
 }
