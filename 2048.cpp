@@ -83,6 +83,14 @@ int *Grid2048::end(){
     return (_table + (x * y));
 }
 
+const int *Grid2048::begin() const{
+    return static_cast<const int*>(_table);
+}
+
+const int *Grid2048::end() const{
+    return static_cast<const int*>(_table + (x * y));
+}
+
 void Grid2048::move(int direction) noexcept{
     bool hasMoved;
 

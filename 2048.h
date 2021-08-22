@@ -25,9 +25,9 @@ public:
 
     int* end();
 
-    int* begin() const;
+    const int* begin() const;
 
-    int* end() const;
+    const int* end() const;
 
     void move(int direction) noexcept;
 
