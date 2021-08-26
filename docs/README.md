@@ -4,7 +4,7 @@ To start a game, a *Grid2048* class must be created:
 Grid2048 grid;
 ```
 
-It will create a 4x4 grid with their values initialized to zero (0). Manipulat
+It will create a 4x4 grid with their values initialized to zero (0).
 
 All methods and attributes are listed below
 
@@ -20,6 +20,7 @@ const int* begin() const			|Returns a const pointer to grid's base array, useful
 int* end()					|Returns a pointer to first element after grid's base array, useful on forEach loop|0.1
 const int* end() const				|Returns a const pointer to first element after grid's base array, useful on forEach loop|0.1
 int& operator() (int x, int y)			|Returns a reference of grid at x, y					|0.1
+int operator() (int x, int y) const		|Returns the value of grid at x, y					|0.1
 Grid2048& generateSquare()			|Insert 2 (99%) or 4 (1%) on grid if possible, else throw an assert. Always check if there is a legal move before calling this|0.1
 bool stillPlayable()				|Returns true if there are legal moves					|0.1
 bool hasLost()					|Returns true if there are not legal moves				|0.1
